@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
+from django.contrib.auth import login
 
 
 
@@ -21,7 +21,8 @@ def signup(request):
           try:
             user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
             user.save()
-            return HttpResponse('User created successfully')
+            login(request, user)
+            return redirect('home')
           except:
              return render(request,'signup/signup.html',{
         'form': UserCreationForm,
