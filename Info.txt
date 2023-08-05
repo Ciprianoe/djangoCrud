@@ -16,3 +16,7 @@ ejecutamos el proyecto inicial django para comprobar su instalacion -- python ma
 #6
 seccionaremos nuestro proyecto creando aplicaciones con django con el siguiente comando
 -- python manage.py startapp nameapp
+
+#iniciar DB Sqlite3
+
+py manage.py migrate
