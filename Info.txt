@@ -1,2 +1,7 @@
 #1
 entorno virtual 
+py -m venv venv
+#2
+activar entorno con F1 buscando el recomendado hasta que en el terminal se habilite 
+o ejecutando el active de la carpeta script
+#3
