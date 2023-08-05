@@ -1,2 +1,12 @@
 #1
 entorno virtual 
+#2
+py -m venv venv ---- con este comando colocamos una carpeta venv y instalamos el entorno virtual 
+#3
+debemos activar el entorno con F1 para agarrar el interprete 
+#4
+instalacion de django con pip intall django
+comandos para inicializar django proyecto
+django-admin startproject nameproject
+para iniciar el proyecto por primera vez dentro de la carpeta del projecto:
+py manage.py runserver 
