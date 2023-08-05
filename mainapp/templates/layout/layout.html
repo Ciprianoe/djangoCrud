@@ -31,6 +31,11 @@
                   <li class="nav-item">
                     <a class="nav-link {% if active == 'signup' %}active{% endif %}" href="{% url 'signup' %}">Signup</a>
                   </li>
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Logout</a>
+                  </li>
+                  {% endif %}                   
                 </ul>            
               </div>
             </div>
