@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -23,8 +23,18 @@ def signup(request):
             user.save()
             return HttpResponse('User created successfully')
           except:
-             return HttpResponse('Username already exits')
-    return HttpResponse('password do not match')
+             return render(request,'signup/signup.html',{
+        'form': UserCreationForm,
+        'active':active,
+        'title':title,
+        'error':'Username already exist'        
+        })
+    return render(request,'signup/signup.html',{
+        'form': UserCreationForm,
+        'active':active,
+        'title':title,
+        'error':'Password do no Match'        
+        })
 
 
 def home(request):
