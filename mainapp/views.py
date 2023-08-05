@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login
+from django.db import IntegrityError
 
 
 
@@ -23,7 +24,7 @@ def signup(request):
             user.save()
             login(request, user)
             return redirect('home')
-          except:
+          except IntegrityError:
              return render(request,'signup/signup.html',{
         'form': UserCreationForm,
         'active':active,
