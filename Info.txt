@@ -5,3 +5,10 @@ py -m venv venv
 activar entorno con F1 buscando el recomendado hasta que en el terminal se habilite 
 o ejecutando el active de la carpeta script
 #3
+install django 
+pip install django 
+revisamos la instalacion con -- django-admin --version 
+#4
+creamos el projecto con -- django-admin startproject nombre del proyecto con un . al final para que se cree en la raiz 
+#5
+ejecutamos el proyecto inicial django para comprobar su instalacion -- python manage.py runserver
