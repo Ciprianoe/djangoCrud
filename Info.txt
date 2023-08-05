@@ -12,3 +12,7 @@ revisamos la instalacion con -- django-admin --version
 creamos el projecto con -- django-admin startproject nombre del proyecto con un . al final para que se cree en la raiz 
 #5
 ejecutamos el proyecto inicial django para comprobar su instalacion -- python manage.py runserver
+
+#6
+seccionaremos nuestro proyecto creando aplicaciones con django con el siguiente comando
+-- python manage.py startapp nameapp
