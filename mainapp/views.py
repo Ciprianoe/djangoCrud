@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login ,logout, authenticate
 from django.db import IntegrityError
+from .forms import CreateTaskForm
+from .models import Task
+
 
 
 
@@ -55,9 +58,6 @@ def signin(request):
    else:
       login(request, user)
       return redirect('home')
-   
-   
-
 
 def home(request):
     active = 'home'
@@ -67,4 +67,19 @@ def home(request):
 def tasks(request):
     active = 'tasks'
     title='Task Page'
-    return render(request, 'tasks/task.html',{"title":title, "active":active})
+    task = Task.objects.all()
+    return render(request, 'tasks/task.html',{"title":title, "active":active, 'task':task})
+
+def createtask(request):
+   active = 'tasks'
+   title = 'Create Task'
+   if request.method == 'GET':
+      print(request.GET)
+      return render(request, 'tasks/create_task.html', {"title":title, 'active':active, 'form': CreateTaskForm()} )
+   else:
+      task=CreateTaskForm(request.POST)
+      new_task = task.save(commit=False)
+      new_task.user = request.user
+      new_task.save()
+      return redirect('tasks')
+      

@@ -2,6 +2,35 @@
 {% block title %}{{title}}{% endblock %}
 {% block content %}
 <h1>HOME TASK</h1>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th >Name Task</th>
+        <th >desciption</th> 
+        <th>Prioridad</th> 
+        <th>Accion</th>
+
+    </tr>       
+    </thead>
+    <tbody>
+        {% for tasks in task %}
+        <tr>          
+            <td>{{tasks.title}}</td>
+            <td>{{tasks.description}}</td>
+            {% if tasks.important == True %}
+            <td>  ✅ Tarea Alta Prioridad</td>
+            {% else %} 
+            <td>  🕐 Tarea Baja prioridad</td> 
+            {% endif %}
+            <td> <a class="btn btn-info" >Edit</a>  | <a class="btn btn-danger">Delete</a></td>    
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>  
+<a class="btn btn-success" href="{% url 'createtask' %}">Crear Tarea</a> 
+</div>
+
 
 
 {%endblock%}
