@@ -67,7 +67,7 @@ def home(request):
 def tasks(request):
     active = 'tasks'
     title='Task Page'
-    task = Task.objects.all().order_by('-important','-id')
+    task = Task.objects.filter(user=request.user, datecompleted__isnull=True).order_by('-important','-id')
     return render(request, 'tasks/task.html',{"title":title, "active":active, 'task':task})
 
 def createtask(request):
@@ -85,3 +85,10 @@ def createtask(request):
          return redirect('tasks')
       except ValueError:
          return render(request, 'tasks/create_task.html', {"title":title, 'active':active, 'form': CreateTaskForm(),'error':'error in data'} )
+      
+def taskeditdetails(request,id):
+    active = 'tasks'
+    title='Task edit details'
+    task = Task.objects.filter(id=id)
+    print(task)    
+    return render(request, 'tasks/tasks_edit_details.html',{'active':active,'title':title, 'task':task})      

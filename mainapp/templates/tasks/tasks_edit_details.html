@@ -1,0 +1,40 @@
+{% extends "../layout/layout.html"%}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<h1> TASK DETAILS OR EDIT</h1>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th >Name Task</th>
+            <th >desciption</th> 
+            <th>Prioridad</th> 
+            <th>Usuario</th>
+            <th>Accion</th>
+    
+        </tr>       
+        </thead>
+        <tbody>
+            {% for tasks in task %}
+            <tr>                   
+                <td>{{tasks.title}}</td>
+                <td>{{tasks.description}}</td>
+                {% if tasks.important == True %}
+                <td>  ✅ Tarea Alta Prioridad</td>
+                {% else %} 
+                <td>  🕐 Tarea Baja prioridad</td> 
+                {% endif %}
+                <td>{{tasks.user.username}}</td> 
+                <td> <a class="btn btn-warning"  href="{% url 'taskeditdetails' tasks.id %}">Actualizar</a></td>               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>  
+    <a class="btn btn-success" href="{% url 'tasks' %}">Volver</a> 
+    </div>
+
+
+
+
+{%endblock%}

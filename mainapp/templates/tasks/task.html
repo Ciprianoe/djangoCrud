@@ -9,13 +9,14 @@
         <th >Name Task</th>
         <th >desciption</th> 
         <th>Prioridad</th> 
+        <th>Usuario</th>
         <th>Accion</th>
 
     </tr>       
     </thead>
     <tbody>
         {% for tasks in task %}
-        <tr>          
+        <tr>                   
             <td>{{tasks.title}}</td>
             <td>{{tasks.description}}</td>
             {% if tasks.important == True %}
@@ -23,7 +24,8 @@
             {% else %} 
             <td>  🕐 Tarea Baja prioridad</td> 
             {% endif %}
-            <td> <a class="btn btn-info" >Edit</a>  | <a class="btn btn-danger">Delete</a></td>    
+            <td>{{tasks.user.username}}</td>
+            <td> <a class="btn btn-warning"  href="{% url 'taskeditdetails' tasks.id %}">Edit</a>  | <a class="btn btn-dark">Done Task</a></td>    
         </tr>
         {% endfor %}
     </tbody>
