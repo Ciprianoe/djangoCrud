@@ -20,3 +20,17 @@ seccionaremos nuestro proyecto creando aplicaciones con django con el siguiente 
 #iniciar DB Sqlite3
 
 py manage.py migrate
+
+
+#7 para realizar o enlazar los modelos de datos 
+
+py manage.py makemigrations
+
+luego el mismo prefijo pero con migrate para crear los modelos
+
+#8 para cerear el user en la vista admin d django
+
+py manage.py cretaesuperuser
+
+#habilitar en la views de admin los modelos 
+en el script admin.py de cada app debes importar los modelos y luego pasar admin.site.register(nameModel)
