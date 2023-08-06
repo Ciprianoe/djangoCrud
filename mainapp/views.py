@@ -67,7 +67,7 @@ def home(request):
 def tasks(request):
     active = 'tasks'
     title='Task Page'
-    task = Task.objects.all()
+    task = Task.objects.all().order_by('-important','-id')
     return render(request, 'tasks/task.html',{"title":title, "active":active, 'task':task})
 
 def createtask(request):
@@ -77,9 +77,11 @@ def createtask(request):
       print(request.GET)
       return render(request, 'tasks/create_task.html', {"title":title, 'active':active, 'form': CreateTaskForm()} )
    else:
-      task=CreateTaskForm(request.POST)
-      new_task = task.save(commit=False)
-      new_task.user = request.user
-      new_task.save()
-      return redirect('tasks')
-      
+      try:
+         task=CreateTaskForm(request.POST)
+         new_task = task.save(commit=False)
+         new_task.user = request.user
+         new_task.save()
+         return redirect('tasks')
+      except ValueError:
+         return render(request, 'tasks/create_task.html', {"title":title, 'active':active, 'form': CreateTaskForm(),'error':'error in data'} )
