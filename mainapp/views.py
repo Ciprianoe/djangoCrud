@@ -5,6 +5,7 @@ from django.contrib.auth import login ,logout, authenticate
 from django.db import IntegrityError
 from .forms import CreateTaskForm
 from .models import Task
+from django.utils import timezone
 
 
 
@@ -108,4 +109,11 @@ def edittask(request,id):
             return redirect('tasks')
          except ValueError:
              return render(request, 'tasks/edit_task.html',{'active':active,'title':title, 'task':task, 'form':form,'error':'Error updating task'})
+         
+def taskdone(request,id):
+   task = get_object_or_404(Task,id=id, user=request.user)
+   if task:
+      task.datecompleted = timezone.now()
+      task.save()
+      return redirect('tasks')         
             

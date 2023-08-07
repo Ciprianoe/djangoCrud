@@ -7,7 +7,7 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)   #este campo no se vizualiza en el panel admi
-    datecompleted = models.DateTimeField(null=True)
+    datecompleted = models.DateTimeField(null=True, blank=True)  #con el blank true puedes set en el admin y salta el req
     important = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
