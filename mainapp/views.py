@@ -56,7 +56,7 @@ def signup(request):
 def logoutsesion(request):
    logout(request)
    print('session borrada')
-   return redirect(signup)
+   return redirect(signin)
 
 def signin(request):
    active = 'signin'
