@@ -7,6 +7,7 @@ from .forms import CreateTaskForm
 from .models import Task
 from django.utils import timezone
 from random import random
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -51,6 +52,7 @@ def signup(request):
         'error':'Password do no Match'        
         })
 
+@login_required
 def logoutsesion(request):
    logout(request)
    print('session borrada')
@@ -69,18 +71,21 @@ def signin(request):
       login(request, user)
       return redirect('home')
 
+@login_required
 def home(request):
     active = 'home'
     title = 'Home Page'
-    task = Task.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-important', '-id')
+    task = Task.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-datecompleted')
     return render(request, 'index.html',{"title":title, "active":active, 'task':task})
 
+@login_required
 def tasks(request):
     active = 'tasks'
     title='Task Page'
     task = Task.objects.filter(user=request.user, datecompleted__isnull=True).order_by('-important','-id')
     return render(request, 'tasks/task.html',{"title":title, "active":active, 'task':task})
 
+@login_required
 def createtask(request):
    active = 'tasks'
    title = 'Create Task'
@@ -96,13 +101,15 @@ def createtask(request):
          return redirect('tasks')
       except ValueError:
          return render(request, 'tasks/create_task.html', {"title":title, 'active':active, 'form': CreateTaskForm(),'error':'error in data'} )
-      
+
+@login_required      
 def taskeditdetails(request,id):
     active = 'tasks'
     title='Task edit details'
     task = Task.objects.filter(id=id)
     return render(request, 'tasks/tasks_edit_details.html',{'active':active,'title':title, 'task':task, 'form':CreateTaskForm()})      
 
+@login_required
 def edittask(request,id):
     active = 'tasks'
     title='Task edit'
@@ -119,14 +126,16 @@ def edittask(request,id):
             return redirect('tasks')
          except ValueError:
              return render(request, 'tasks/edit_task.html',{'active':active,'title':title, 'task':task, 'form':form,'error':'Error updating task'})
-         
+
+@login_required         
 def taskdone(request,id):
    task = get_object_or_404(Task,id=id, user=request.user)
    if task:
       task.datecompleted = timezone.now()
       task.save()
       return redirect('tasks')         
-            
+
+@login_required            
 def taskdelete(request,id):
    task = get_object_or_404(Task, id=id, user=request.user)
    if task:

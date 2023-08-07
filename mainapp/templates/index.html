@@ -11,6 +11,9 @@
     <div class="card-body">        
       <p class="card-text">Title: {{tasks.title}} </p>
       <p class="card-text">Description: {{tasks.description}}</p>
+      <!-- <p class="card-text">Date-Completed: {{tasks.datecompleted}}</p> -->
+      <!-- <p class="card-text">Date-Completed: {{tasks.datecompleted|date:'M j Y:i'}}</p> -->
+      <p class="card-text">Date-Completed: {{tasks.datecompleted|date:'F d, Y \- H:i A'}}</p>
       <p class="card-text">Usuario: {{tasks.user.username}} </p>      
     </div>   
   </div>
