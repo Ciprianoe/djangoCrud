@@ -6,12 +6,21 @@ from django.db import IntegrityError
 from .forms import CreateTaskForm
 from .models import Task
 from django.utils import timezone
+from random import random
 
 
 
 
 
 # Create your views here.
+
+def generate_random_color():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    return '#%02x%02x%02x' % (r, g, b)
+
+
 def signup(request):
     active = 'signup'
     title = 'Signup'
@@ -63,7 +72,8 @@ def signin(request):
 def home(request):
     active = 'home'
     title = 'Home Page'
-    return render(request, 'index.html',{"title":title, "active":active})
+    task = Task.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-important', '-id')
+    return render(request, 'index.html',{"title":title, "active":active, 'task':task})
 
 def tasks(request):
     active = 'tasks'
@@ -117,3 +127,11 @@ def taskdone(request,id):
       task.save()
       return redirect('tasks')         
             
+def taskdelete(request,id):
+   task = get_object_or_404(Task, id=id, user=request.user)
+   if task:
+      task.delete()
+      return redirect('tasks')
+   
+
+

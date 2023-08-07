@@ -21,3 +21,18 @@ footer{
     margin-right: 20px;
     font-size: large;
 }
+
+.container-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {  
+    margin: 10px;
+  }
+
+  .card-body{
+    margin: 10px;
+    
+  }

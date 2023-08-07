@@ -25,7 +25,9 @@
             <td>  🕐 Tarea Baja prioridad</td> 
             {% endif %}
             <td>{{tasks.user.username}}</td>
-            <td> <a class="btn btn-warning"  href="{% url 'taskeditdetails' tasks.id %}">Edit</a>  | <a class="btn btn-dark" href="{% url 'taskdone' tasks.id %}" >Done Task</a></td>    
+            <td> <a class="btn btn-warning"  href="{% url 'taskeditdetails' tasks.id %}">Edit</a>  | 
+                <a class="btn btn-dark" href="{% url 'taskdone' tasks.id %}" >Done Task</a> | 
+                <a class="btn btn-danger" href="{% url 'taskdelete' tasks.id %}" >Delete</a> </td>    
         </tr>
         {% endfor %}
     </tbody>

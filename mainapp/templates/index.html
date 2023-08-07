@@ -4,4 +4,16 @@
 <h1>HOME PAGE</h1>
 
 
+<div class="container-card">
+    {%for tasks in task %}
+<div class="card" style="width: 18rem;">
+    <p style="color: green;font-weight: bold; margin-top: auto; margin-bottom: auto;">✅ Tarea Completada</p>
+    <div class="card-body">        
+      <p class="card-text">Title: {{tasks.title}} </p>
+      <p class="card-text">Description: {{tasks.description}}</p>
+      <p class="card-text">Usuario: {{tasks.user.username}} </p>      
+    </div>   
+  </div>
+  {%endfor%} 
+</div>
 {%endblock%}
