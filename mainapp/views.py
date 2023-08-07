@@ -53,9 +53,8 @@ def signup(request):
         })
 
 @login_required
-def logoutsesion(request):
+def logouts(request):
    logout(request)
-   print('session borrada')
    return redirect(signin)
 
 def signin(request):

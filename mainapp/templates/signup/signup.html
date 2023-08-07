@@ -3,18 +3,29 @@
 {% block content %}
 
 
-    <main class="container">
-      <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <form method="POST" class="card card-body text-center">
-                <h1>SIGNUP PAGE</h1>
-                {% csrf_token %}
-            {{form}}
-            <button class="btn btn-primary"> Register </button>
-            {{error}}
-            </form>  
-        </div>
-      </div>  
-    </main>
+<main class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 pt-5">
+        <form method="POST" class="card card-body">
+            <h1 class="text-center">SIGNUP</h1>
+            {% csrf_token %}            
+            <div class="mb-3">
+              <label for="username">Usuario:</label>
+              <input type="text" name="username" id="username" class="form-control" placeholder="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="pasword1">Password:</label>
+              <input type="password" name="password1" id="password1" class="form-control" placeholder="password" required>
+            </div>
+            <div class="mb-3">
+              <label for="password2">Confirm password:</label>
+              <input type="password" name="password2" id="password2" class="form-control" placeholder="password" required>
+            </div>
+        <button class="btn btn-primary"> Register </button>
+        {{error}}
+        </form>  
+    </div>
+  </div>  
+</main>
     
 {%endblock%}

@@ -1,15 +1,21 @@
 {% extends "../layout/layout.html"%}
 {% block title %}{{title}}{% endblock %}
 {% block content %}
-<h1>CREATE TASK</h1>
 
-    <form action="{% url 'createtask' %}" method="POST">
-        {% csrf_token %}
 
-            {{form.as_p}}
+    <main class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 mt-5">
+                <form class="card card-body" action="{% url 'createtask' %}" method="POST">
+                    <h1 class="text-center">CREATE TASK</h1>
+                    {% csrf_token %}
+                        {{form.as_p}}
+                    <button class="btn btn-warning" >Guarda</button>
+                </form>
+                {{error}}
+            </div>        
+        </div>     
+    </main>
 
-        <button class="btn btn-warning" >Guarda</button>
-    </form>
-    {{error}}
-
+   
 {%endblock%}
