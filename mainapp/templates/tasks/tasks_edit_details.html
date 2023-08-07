@@ -26,7 +26,7 @@
                 <td>  🕐 Tarea Baja prioridad</td> 
                 {% endif %}
                 <td>{{tasks.user.username}}</td> 
-                <td> <a class="btn btn-warning"  href="{% url 'taskeditdetails' tasks.id %}">Actualizar</a></td>               
+                <td> <a class="btn btn-warning"  href="{% url 'taskedit' tasks.id %}">Actualizar</a></td>               
             </tr>
             {% endfor %}
         </tbody>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login ,logout, authenticate
@@ -90,5 +90,22 @@ def taskeditdetails(request,id):
     active = 'tasks'
     title='Task edit details'
     task = Task.objects.filter(id=id)
-    print(task)    
-    return render(request, 'tasks/tasks_edit_details.html',{'active':active,'title':title, 'task':task})      
+    return render(request, 'tasks/tasks_edit_details.html',{'active':active,'title':title, 'task':task, 'form':CreateTaskForm()})      
+
+def edittask(request,id):
+    active = 'tasks'
+    title='Task edit'
+    if request.method == 'GET':
+         task = get_object_or_404(Task,id=id, user=request.user)
+         form = CreateTaskForm(instance=task)  
+         return render(request, 'tasks/edit_task.html',{'active':active,'title':title, 'task':task, 'form':form})
+    else:
+         try:
+            print(request.POST)
+            task = get_object_or_404(Task,id=id, user=request.user)
+            form=CreateTaskForm(request.POST,instance=task)
+            form.save()
+            return redirect('tasks')
+         except ValueError:
+             return render(request, 'tasks/edit_task.html',{'active':active,'title':title, 'task':task, 'form':form,'error':'Error updating task'})
+            
