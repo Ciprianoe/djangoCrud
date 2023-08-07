@@ -1,12 +1,20 @@
 {% extends "../layout/layout.html"%}
 {% block title %}{{title}}{% endblock %}
 {% block content %}
-<h1>SIGNUP PAGE</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-    {{form.as_p}}
-    <button class="btn btn-primary"> Register </button>
-    </form>    
-    {{error}}
+
+    <main class="container">
+      <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form method="POST" class="card card-body text-center">
+                <h1>SIGNUP PAGE</h1>
+                {% csrf_token %}
+            {{form}}
+            <button class="btn btn-primary"> Register </button>
+            {{error}}
+            </form>  
+        </div>
+      </div>  
+    </main>
+    
 {%endblock%}
