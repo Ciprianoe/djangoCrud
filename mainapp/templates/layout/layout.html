@@ -15,8 +15,8 @@
 
         {% block navbar %}
         <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">App-Task</a>
+            <div class="container-fluid">             
+              <img src="{% static 'img/LogoTrianguloSinBG.png'%}" style="width: 200px;">              
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -24,7 +24,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}  
                   <li class="nav-item">
-                    <a class="nav-link {% if active == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link {% if active == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Tareas realizadas</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link {% if active == 'tasks' %}active{% endif %}" href="{% url 'tasks' %}">Tareas</a>
@@ -58,8 +58,8 @@
 
         
         {% block footer %}
-        <footer>            
-            &copy; Copyright 2023 by <a href="https://portafoliociprianoescorche.up.railway.app/"  target="_blank">Cipriano Escorche</a>.           
+        <footer style="font-size: small;">            
+            Django-App &copy; Copyright 2023 Desarrollado por <a href="https://portafoliociprianoescorche.up.railway.app/"  target="_blank">Cipriano Escorche</a>.           
         </footer>
         {% endblock %}
     

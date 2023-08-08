@@ -1,12 +1,12 @@
 {% extends "../layout/layout.html"%}
 {% block title %}{{title}}{% endblock %}
 {% block content %}
-<h1>HOME TASK</h1>
+<h1>Tareas Por Realizar</h1>
 <div class="container">
 <table class="table table-striped">
-    <thead>
+    <thead class="text-center">
     <tr>
-        <th >Name Task</th>
+        <th>Name Task</th>
         <th >desciption</th> 
         <th>Prioridad</th> 
         <th>Usuario</th>
@@ -14,7 +14,7 @@
 
     </tr>       
     </thead>
-    <tbody>
+    <tbody class="text-center">
         {% for tasks in task %}
         <tr>                   
             <td>{{tasks.title}}</td>
@@ -25,9 +25,9 @@
             <td>  🕐 Tarea Baja prioridad</td> 
             {% endif %}
             <td>{{tasks.user.username}}</td>
-            <td> <a class="btn btn-warning"  href="{% url 'taskeditdetails' tasks.id %}">Edit</a>  | 
-                <a class="btn btn-dark" href="{% url 'taskdone' tasks.id %}" >Done Task</a> | 
-                <a class="btn btn-danger" href="{% url 'taskdelete' tasks.id %}" >Delete</a> </td>    
+            <td> <a class="btn btn-warning btn-sm"  href="{% url 'taskeditdetails' tasks.id %}">Edit</a>  
+                <a class="btn btn-dark btn-sm" href="{% url 'taskdone' tasks.id %}" >Done Task</a> 
+                <a class="btn btn-danger btn-sm" href="{% url 'taskdelete' tasks.id %}" >Delete</a> </td>    
         </tr>
         {% endfor %}
     </tbody>

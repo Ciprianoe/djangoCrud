@@ -8,6 +8,22 @@ footer{
     bottom: 0;
 }
 
+
+.table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .table td {
+    word-wrap: break-word;
+  }
+
+
+
+.navbar{
+    background-color: aqua;
+}
+
 .navbar-nav{
     margin-left:auto;
     
