@@ -45,3 +45,4 @@ visita para mas info https://render.com/docs/deploy-django
 6. crear el script build.sh y ejecuta el comando en bash
 7. install gunicorn
 8. craer archivo requirements -- pip freeze > requirements.txt 
+9. setear los requirements en el bash.sh pip install -r requirements.txt 
